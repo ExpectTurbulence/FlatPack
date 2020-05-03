@@ -1,0 +1,13 @@
+
+{
+    "variants": {
+        "is_open=true,facing=north": { "model": "flatpack:block/window_open", "y":180 },
+        "is_open=true,facing=east": { "model": "flatpack:block/window_open", "y":270 },
+        "is_open=true,facing=south": { "model": "flatpack:block/window_open", "y":0 },
+        "is_open=true,facing=west": { "model": "flatpack:block/window_open", "y":90 },
+        "is_open=false,facing=north": { "model": "flatpack:block/window", "y":180 },
+        "is_open=false,facing=east": { "model": "flatpack:block/window", "y":270 },
+        "is_open=false,facing=south": { "model": "flatpack:block/window", "y":0 },
+        "is_open=false,facing=west": { "model": "flatpack:block/window", "y":90 }
+    }
+}
