@@ -1,5 +1,7 @@
 package turbulence.flatpack.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -16,6 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import turbulence.flatpack.Registration;
 
@@ -27,6 +30,7 @@ public class Window extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     public static final BooleanProperty IS_BELOW = BooleanProperty.create("is_below");
     public static final BooleanProperty IS_ABOVE = BooleanProperty.create("is_above");
+    public static final BooleanProperty IS_VALID_LOCATION = BooleanProperty.create("is_valid_location");
 
     public Window() {
         super(Properties.create(Material.GLASS)
@@ -38,6 +42,7 @@ public class Window extends Block {
             .with(IS_ABOVE, false)
             .with(IS_BELOW, false)
             .with(IS_OPEN, false)
+            .with(IS_VALID_LOCATION, true)
         );
     }
 
@@ -48,7 +53,7 @@ public class Window extends Block {
 
     @Override
     protected void fillStateContainer(Builder<Block, BlockState> builder) {
-        builder.add(FACING, IS_OPEN, IS_ABOVE, IS_BELOW);
+        builder.add(FACING, IS_OPEN, IS_ABOVE, IS_BELOW, IS_VALID_LOCATION);
     }
 
     @Override
@@ -70,7 +75,25 @@ public class Window extends Block {
         if (facingState.getBlock() == Registration.WINDOW && (facing == Direction.UP || facing == Direction.DOWN))
             isOpen = facingState.get(IS_OPEN);
 
+        if (!stateIn.isValidPosition(worldIn, currentPos))
+            worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+
         return stateIn.with(IS_ABOVE, isAbove).with(IS_BELOW, isBelow).with(IS_OPEN, isOpen);
+    }
+
+    @Override
+    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+        if (!state.isValidPosition(worldIn, pos))
+            worldIn.destroyBlock(pos, true);
+    }
+
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        for(Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockState blockstate = worldIn.getBlockState(pos.offset(direction));
+            if (blockstate.getBlock() == Registration.WINDOW)
+                return false;
+        }
+        return true;
     }
 
     @Override
