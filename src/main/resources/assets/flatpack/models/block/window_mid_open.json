@@ -1,0 +1,80 @@
+{
+    "credit": "Made with Blockbench",
+    "textures": {
+		"default": "flatpack:block/test"
+	},
+	"elements": [
+		{
+			"name": "v1",
+			"from": [15, 0, 15],
+			"to": [17, 16, 17],
+			"color": 3,
+			"faces": {
+				"north": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"east": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"south": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"west": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"up": {"uv": [0, 0, 2, 2], "texture": "#default"},
+				"down": {"uv": [0, 0, 2, 2], "texture": "#default"}
+			}
+		},
+		{
+			"name": "v2",
+			"from": [-1, 0, 15],
+			"to": [1, 16, 17],
+			"color": 3,
+			"faces": {
+				"north": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"east": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"south": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"west": {"uv": [0, 0, 2, 14], "texture": "#default"},
+				"up": {"uv": [0, 0, 2, 2], "texture": "#default"},
+				"down": {"uv": [0, 0, 2, 2], "texture": "#default"}
+			}
+		},
+		{
+			"name": "pane",
+			"from": [1, 0, 15.99],
+			"to": [15, 16, 16.01],
+			"color": 7,
+			"faces": {
+				"north": {"uv": [0, 0, 14, 14], "texture": "#default"},
+				"east": {"uv": [0, 0, 0, 14], "texture": "#default"},
+				"south": {"uv": [0, 0, 14, 14], "texture": "#default"},
+				"west": {"uv": [0, 0, 0, 14], "texture": "#default"},
+				"up": {"uv": [0, 0, 14, 0], "texture": "#default"},
+				"down": {"uv": [0, 0, 14, 0], "texture": "#default"}
+			}
+		},
+		{
+			"name": "shutter3",
+			"from": [1, 0, 15],
+			"to": [8, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 8, 14]},
+			"color": 7,
+			"faces": {
+				"north": {"uv": [0, 0, 7, 14], "texture": "#default"},
+				"east": {"uv": [0, 0, 1, 14], "texture": "#default"},
+				"south": {"uv": [0, 0, 7, 14], "texture": "#default"},
+				"west": {"uv": [0, 0, 1, 14], "texture": "#default"},
+				"up": {"uv": [0, 0, 7, 1], "texture": "#default"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#default"}
+			}
+		},
+		{
+			"name": "shutter4",
+			"from": [8, 0, 15],
+			"to": [15, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15, 8, 14]},
+			"color": 7,
+			"faces": {
+				"north": {"uv": [0, 0, 7, 14], "texture": "#default"},
+				"east": {"uv": [0, 0, 1, 14], "texture": "#default"},
+				"south": {"uv": [0, 0, 7, 14], "texture": "#default"},
+				"west": {"uv": [0, 0, 1, 14], "texture": "#default"},
+				"up": {"uv": [0, 0, 7, 1], "texture": "#default"},
+				"down": {"uv": [0, 0, 7, 1], "texture": "#default"}
+			}
+		}
+	]
+}
