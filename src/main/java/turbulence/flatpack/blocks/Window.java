@@ -17,6 +17,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -32,6 +35,11 @@ public class Window extends Block {
     public static final BooleanProperty IS_ABOVE = BooleanProperty.create("is_above");
     public static final BooleanProperty IS_VALID_LOCATION = BooleanProperty.create("is_valid_location");
 
+    protected static final VoxelShape AABB_NORTH = Block.makeCuboidShape(-1.0D, -1.0D, -1.0D, 17.0D, 17.0D, 1.0D);
+    protected static final VoxelShape AABB_SOUTH = Block.makeCuboidShape(-1.0D, -1.0D, 15.0D, 17.0D, 17.0D, 17.0D);
+    protected static final VoxelShape AABB_EAST = Block.makeCuboidShape(15.0D, -1.0D, -1.0D, 17.0D, 17.0D, 17.0D);
+    protected static final VoxelShape AABB_WEST = Block.makeCuboidShape(-1.0D, -1.0D, -1.0D, 1.0D, 17.0D, 17.0D);
+
     public Window() {
         super(Properties.create(Material.GLASS)
             .sound(SoundType.GLASS)
@@ -44,6 +52,11 @@ public class Window extends Block {
             .with(IS_OPEN, false)
             .with(IS_VALID_LOCATION, true)
         );
+    }
+
+    @Override
+    public boolean isSolid(BlockState state) {
+        return false;
     }
 
     @Override
@@ -101,5 +114,20 @@ public class Window extends Block {
             BlockRayTraceResult hit) {
         worldIn.setBlockState(pos, state.with(IS_OPEN, !state.get(IS_OPEN)), 1);
         return true;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        switch((Direction)state.get(HorizontalBlock.HORIZONTAL_FACING)) {
+            case NORTH:
+            default:
+               return AABB_NORTH;
+            case SOUTH:
+               return AABB_SOUTH;
+            case WEST:
+               return AABB_WEST;
+            case EAST:
+               return AABB_EAST;
+        }
     }
 }
