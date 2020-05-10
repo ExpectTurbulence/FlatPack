@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "": {
+            "model": "flatpack:block/testblockobj.obj",
+            "textures": {},
+            "custom": { "flip-v": true }
+        }
+    }
+}
